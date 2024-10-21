@@ -111,6 +111,9 @@ h6 {
   line-height: 1.25;
   scroll-margin: 40px;
   color: #e67316;
+  text-align: center;
+  font-family: sans-serif;  
+    
 }
 
 h1 { font-size: var(--heading-font-size-xxl); }
