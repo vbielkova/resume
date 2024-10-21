@@ -458,7 +458,7 @@ function decorateSections(main) {
   if (document.location.href.includes("viktoriia-bielkova-certificates"))  {
     main.querySelectorAll('li').forEach((element, index) => {
       const anchor = document.createElement('a');
-      anchor.href = `#section-${index + 1}`;
+      anchor.href = `#section-${index - 3}`;
       anchor.textContent = element.textContent;
       element.textContent = '';
       element.appendChild(anchor);
