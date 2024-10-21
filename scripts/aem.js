@@ -455,22 +455,12 @@ function decorateIcons(element, prefix = '') {
  * @param {Element} main The container element
  */
 function decorateSections(main) {
-  if (document.location.href.includes("viktoriia-bielkova-certificates"))  {
-    main.querySelectorAll('li').forEach((element, index) => {
-      const anchor = document.createElement('a');
-      anchor.href = `#section-${index - 2}`;
-      anchor.textContent = element.textContent;
-      element.textContent = '';
-      element.appendChild(anchor);
-    });
-  }
-  main.querySelectorAll(':scope > div').forEach((section, index) => {
+  main.querySelectorAll(':scope > div').forEach((section) => {
     const wrappers = [];
     let defaultContent = false;
     [...section.children].forEach((e) => {
       if (e.tagName === 'DIV' || !defaultContent) {
         const wrapper = document.createElement('div');
-        if (document.location.href.includes("viktoriia-bielkova-certificates"))  wrapper.id = `section-${index}`;
         wrappers.push(wrapper);
         defaultContent = e.tagName !== 'DIV';
         if (defaultContent) wrapper.classList.add('default-content-wrapper');
@@ -500,6 +490,22 @@ function decorateSections(main) {
       sectionMeta.parentNode.remove();
     }
   });
+
+  if (document.location.href.includes("viktoriia-bielkova-certificates")) {
+    const sections = document.querySelectorAll('.section');
+    const sectionsWithPictures = Array.from(sections).filter(section => section.querySelector('picture') !== null);
+
+    sectionsWithPictures.forEach((section, index) => {
+      section.id = `section-${index + 1}`;
+      main.querySelectorAll('li').forEach((element, index) => {
+        const anchor = document.createElement('a');
+        anchor.href = `#section-${index + 1}`;
+        anchor.textContent = element.textContent;
+        element.textContent = '';
+        element.appendChild(anchor);
+      });
+    });
+  }
 }
 /**
  * Gets placeholders object.
