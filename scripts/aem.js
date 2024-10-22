@@ -455,6 +455,9 @@ function decorateIcons(element, prefix = '') {
  * @param {Element} main The container element
  */
 function decorateSections(main) {
+  main.querySelectorAll('source[type="image/webp"][srcset]').forEach((el) => {
+    el.srcset = el.srcset.replace("width=750", "width=2000");
+})
   main.querySelectorAll(':scope > div').forEach((section) => {
     const wrappers = [];
     let defaultContent = false;
